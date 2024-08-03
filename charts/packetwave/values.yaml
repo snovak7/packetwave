@@ -1,0 +1,75 @@
+# Default values
+
+agent:
+  enabled: true
+  image:
+    override: ~
+    repository: "ghcr.io/packetwave/agent"
+    pullPolicy: IfNotPresent
+    tag: "v0.1.0"
+
+debug:
+  enabled: false
+
+imagePullSecrets: []
+
+serviceAccounts:
+  agent:
+    create: true
+    name: packetwave-agent
+    annotations: {}
+  init:
+    create: true
+    name: packetwave-init
+    annotations: {}
+  operator:
+    create: true
+    name: packetwave-operator
+    annotations: {}
+
+nodeSelector:
+  kubernetes.io/os: linux
+
+securityContext:
+  privileged: false
+  seLinuxOptions:
+    level: 's0'
+    type: 'spc_t'
+  capabilities:
+    agent:
+      - CHOWN
+      - KILL
+      - NET_ADMIN
+      - NET_RAW
+      - IPC_LOCK
+      - SYS_MODULE
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+    cgroup:
+      - SYS_ADMIN
+      - SYS_CHROOT
+      - SYS_PTRACE
+    sysctl:
+      - SYS_ADMIN
+      - SYS_CHROOT
+      - SYS_PTRACE
+    clean:
+      - NET_ADMIN
+      - SYS_MODULE
+      - SYS_ADMIN
+      - SYS_RESOURCE
+
+tolerations:
+  - operator: Exists
+
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - topologyKey: kubernetes.io/hostname
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: packetwave
