@@ -1,0 +1,8 @@
+[package]
+name = "packetwave-core"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+
+[lib]
+name = "packetwave_core"

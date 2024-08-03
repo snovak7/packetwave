@@ -1,0 +1,22 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/cni",
+    "crates/core",
+    "crates/packetwave",
+]
+
+default-members = [
+    "crates/packetwave",
+]
+[workspace.dependencies]
+[workspace.package]
+authors = [
+    "Simon Novak <snovak7@gmail.com>"
+]
+categories = []
+documentation = ""
+edition = "2021"
+license = "Apache-2.0"
+publish = false
+version = "0.1.0"

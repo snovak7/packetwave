@@ -1,0 +1,19 @@
+[package]
+name = "packetwave"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+[dependencies]
+# packetwave-cni = { version = "0.1.0", path = "../cni" }
+# packetwave-core = { version = "0.1.0", path = "../core" }
+
+[[bin]]
+name = "agent"
+
+[[bin]]
+name = "init"
+
+[[bin]]
+name = "operator"
